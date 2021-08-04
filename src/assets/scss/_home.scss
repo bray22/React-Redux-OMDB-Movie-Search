@@ -1,0 +1,188 @@
+h1 {
+  color: purple;
+}
+
+.App, .root {
+  height: 100%;
+}
+
+#root {
+  height: 100%
+}
+
+
+.mf-template {
+  height:100%;
+  display: flex;
+  flex-direction: column;
+
+  .search-panel {
+    background: #1A1A1A;
+    height: 100%;
+    .search-results {
+      height: 85%;
+      border: 1px solid white;
+      padding: 10px;
+      width: 70%;
+      margin: 20px auto 0 auto;
+      
+      
+      .search-results-row {
+        display: flex;
+        cursor: pointer;
+        padding: 10px;
+        border-bottom: 1px solid silver;
+        div {
+          margin: 2px 0 20px 0;
+          padding: 0px 0 10px 10px;
+          
+        }
+        .movie-title {
+          width: 300px;
+        }
+        .add-watchlist {
+          width: 200px;
+          &:hover {
+            color: gray;
+          }
+        }
+      }
+    }
+  }
+
+  .featured-movie-wrapper {
+    display: flex;
+    flex-direction: column;
+    .top {
+      height: 70%;
+      background: url(../img/spotlight.jpg) ;
+      display: flex;
+      .left {
+        flex: 0 100px;
+       
+      }
+      .right {
+        flex: 1;
+        padding: 10px;
+      }
+    }
+    .bottom {
+      display: flex;
+      margin-top: 10px;
+      min-height: 150px;
+      .left {
+        flex: 1;
+        background: #C9C9C9;
+        color: black;
+        margin-right: 10px;
+        padding: 10px;
+        
+      }
+      .right {
+        flex: 1;
+        color: black;
+        background: #C9C9C9;
+        padding: 10px;
+      }
+      
+      height: 30%;
+      background: #1A1A1A;
+    }
+  }
+
+  .home-center {
+    background: green;
+    flex:2;
+    display: flex;
+    .home-left {
+      background: #1A1A1A;
+      width: 60%;
+      padding: 30px;
+    }
+    .home-right {
+      background-color:#696969;
+      width: 40%;
+      padding: 30px;
+      .watchlist-wrapper {
+        width: 100%;
+        p {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .header {
+    min-height: 70px;
+    background: #1A1A1A;
+    border-bottom: 2px solid white;
+  }
+  .header-wrapper {
+    
+    .header-links {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      a { color: #C9C9C9 }
+    }
+    .logo {
+      width: 230px;
+      padding: 10px;
+      cursor: pointer;
+      background: url(../img/movienite.png) no-repeat center center #1a1a1a;
+      background-size: 200px;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      
+      a { 
+        position: absolute;
+        color: aquamarine;
+        top: 10px;
+        left: 50px;
+        text-decoration: none;
+      }
+    }
+    .search-wrapper {
+     flex: 1;
+     padding: 0 20px;
+     input {
+      margin: 15px auto 0 auto;
+      background: url(../img/magnify.png) center right no-repeat white;
+      background-size:30px;
+      display: block;
+      width: 100%;
+      height: 30px;
+      font-size: 20px;
+     }
+     
+    }
+    .right {
+      width: 300px;
+      background:#1A1A1A;
+      position: relative;
+    }
+    display: flex;
+    height: 100%;
+  }
+}
+
+html,body {
+  height: 100%;
+}
+
+h3 {
+ font-size: 30px; 
+ font-family: 'Arial Narrow', Arial, sans-serif;
+ letter-spacing: 2px;
+ margin: 0;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+}
+
