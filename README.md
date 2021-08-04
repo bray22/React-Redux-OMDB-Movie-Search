@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# MOVIENITE Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This web application allows users to search for movies 
+and create their own personalized list for future movie viewing.
+
+The movie search uses The OMDb (Open Movie Database) API which is
+free to use with a personalized Key.
+
+The application is built using React JS, SASS, CSS, and HTML on a Node.js server.
+
+## Functionality
+
+- Ability to search for Movies based on Title of Movie using the OMDb.
+- Select a movie and search for details of the movie using OMDb including: actor, title, awards, year released, director
+
+- Ability to add a select to a personalized “Watch List”.
+- Ability to manage “Watch List” (Add, Update, Delete).
+- Ability to store user’s “Watch List” data.
+
 
 ## Available Scripts
 

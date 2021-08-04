@@ -1,0 +1,297 @@
+h1 {
+  color: purple;
+}
+
+.App, .root {
+  height: 100%;
+}
+
+#root {
+  height: 100%
+}
+
+
+.mf-template {
+  height:100%;
+  display: flex;
+  flex-direction: column;
+
+  a {
+    color: white; 
+    text-decoration: none;
+    &:hover {
+      color: gray;
+    } 
+  }
+
+  .search-panel {
+    background: #1A1A1A;
+    flex:1;
+    .search-results-header {
+      padding: 10px;
+      width: 90%;
+      margin: 20px auto 0 auto;
+      background-color: #333;
+    }
+    .search-results {
+      //height: 65%;
+      //@warn: 1px solid white;
+      span {
+        cursor: pointer;
+        color: #aaa;
+        &:hover {
+          color: gray;
+        }
+      }
+      padding: 10px;
+      width: 90%;
+      margin: 20px auto 0 auto;
+      background-color: #333;
+      display: flex;
+      flex-direction: column;
+     // overflow-x: scroll;
+      
+      
+      .search-results-row {
+        display: flex;
+        cursor: pointer;
+        flex:1;
+        border-bottom: 1px solid silver;
+        div {
+          margin: 0;
+          padding: 5px 0;
+          
+        }
+        .movie-title {
+          width: 50%;
+        }
+        .movie-type {
+          width: 15%;
+        }
+        .movie-year {
+          width: 15%;
+        }
+        .movie-imdb {
+          width: 15%;
+        }
+        .add-watchlist {
+          width: 5%;
+          &:hover {
+            color: gray;
+          }
+        }
+      }
+    }
+  }
+
+  .featured-movie-wrapper {
+    display: flex;
+    flex-direction: column;
+    h3 {
+      margin-right: 10px;
+      display: flex;
+      .plus {
+        margin-left: 10px;
+        cursor: pointer;
+        color: lightgreen;
+      }
+    }
+    .top {
+      height: 70%;
+      //background: url(../img/spotlight.jpg);
+      background-image: linear-gradient(#333, #1a1a1a);
+      display: flex;
+      .left {
+        flex: 0 100px;
+      }
+      .right {
+        flex: 1;
+        padding: 20px;
+      }
+    }
+    .bottom {
+      display: flex;
+      margin-top: 10px;
+      min-height: 150px;
+      h3 {
+        font-size: 18px;
+      }
+      .left {
+       
+        flex: 1;
+        background: #ddcaa3;
+        color: black;
+        margin-right: 10px;
+        padding: 10px;
+        
+      }
+      .right {
+        flex: 1;
+        color: black;
+        background: #ddcaa3;
+        padding: 10px;
+      }
+      
+      height: 30%;
+      background: #1A1A1A;
+    }
+  }
+
+  .home-center {
+    background: green;
+    flex:2;
+    display: flex;
+    .home-left {
+      background: #1A1A1A;
+      width: 60%;
+      padding: 30px;
+    }
+    .home-right {
+      background-color:#1A1A1A;
+      width: 40%;
+      padding: 30px;
+      .watchlist-wrapper {
+        padding: 10px;
+        background: #af841a;
+        .search-results-row {
+          display: flex;
+          cursor: pointer;
+          flex:1;
+          border-bottom: 1px solid silver;
+          div {
+            margin: 0;
+            padding: 10px 0;
+            
+          }
+          .movie-title {
+            width: 75%;
+          }
+         
+          .movie-year {
+            width: 25%;
+          }
+         
+        }
+        width: 100%;
+        p {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .search-center {
+    background: green;
+    flex:2;
+    display: flex;
+    .search-left {
+      background: #1A1A1A;
+      width: 75%;
+      padding: 10px 30px 20px 0;
+    }
+    .search-right {
+      background-color:#1a1a1a;
+      width: 25%;
+      padding: 30px;
+      .watchlist-wrapper {
+        padding: 20px;
+        background: #af841a;
+        .search-results-row {
+          display: flex;
+          cursor: pointer;
+          flex:1;
+          border-bottom: 1px solid silver;
+          div {
+            margin: 0;
+            padding: 10px 0;
+            
+          }
+          .movie-title {
+            width: 85%;
+          }
+         
+          .movie-year {
+            width: 15%;
+          }
+         
+        }
+        p {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .header {
+    min-height: 70px;
+    background: #1A1A1A;
+    border-bottom: 2px solid white;
+  }
+  .header-wrapper {
+    
+    .header-links {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      a { color: #C9C9C9 }
+    }
+    .logo {
+      width: 230px;
+      padding: 10px;
+      cursor: pointer;
+      background: url(../img/movienite.png) no-repeat center center #1a1a1a;
+      background-size: 200px;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      
+      a { 
+        position: absolute;
+        color: aquamarine;
+        top: 10px;
+        left: 50px;
+        text-decoration: none;
+      }
+    }
+    .search-wrapper {
+     flex: 1;
+     padding: 0 20px;
+     input {
+      margin: 15px auto 0 auto;
+      background: url(../img/magnify.png) center right no-repeat white;
+      background-size:30px;
+      display: block;
+      width: 100%;
+      height: 30px;
+      font-size: 20px;
+     }
+     
+    }
+    .right {
+      width: 300px;
+      background:#1A1A1A;
+      position: relative;
+    }
+    display: flex;
+    height: 100%;
+  }
+}
+
+html,body {
+  height: 100%;
+}
+
+h3 {
+ font-size: 30px; 
+ font-family: 'Arial Narrow', Arial, sans-serif;
+ letter-spacing: 2px;
+ margin: 0;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+}
+
