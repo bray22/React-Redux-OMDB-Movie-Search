@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 
 import store from '../store';
 import  Header  from './Header';
 import omdbServices from '../services/omdb';
-import { removeWatchListItem } from '../utils/watchListUtils';
-import FeaturedMovie from '../modules/FeaturedMovie';
 import WatchList from '../modules/WatchList';
+import FeaturedMovie from '../modules/FeaturedMovie';
+import { removeWatchListItem } from '../utils/watchListUtils';
 
 class Home extends Component {
   constructor() {
@@ -23,6 +22,24 @@ class Home extends Component {
   componentDidMount = () => {
     this._fetchFeatureMovie();
    }
+
+   _addMovieToFavs = (movie) => {
+    const movieFavoritesArray = store.getState().movieFavorites ? store.getState().movieFavorites: [];
+    movieFavoritesArray.push(movie);
+
+    let watchList = [];
+    if (localStorage.getItem('watchList') === null) {
+      localStorage.setItem('watchList', JSON.stringify([]));
+    } else {
+      watchList = JSON.parse(localStorage.getItem('watchList'));
+      watchList.push(movie);
+      localStorage.setItem('watchList', JSON.stringify(watchList));
+    }
+
+    this.setState({
+      watchList: JSON.parse(localStorage.getItem('watchList'))
+    });
+  }
 
    _fetchFeatureMovie = async (title) => {
     const response = await omdbServices.fetchFeatureMovie();
@@ -41,6 +58,7 @@ class Home extends Component {
   }
 
   render = () => {
+    
     return (
       <div className="mf-template">
         <div className="header">
@@ -48,7 +66,7 @@ class Home extends Component {
         </div>
         <div className="home-center">
           <div className="home-left">
-            <FeaturedMovie movie={this.state.featuredMovie} />
+            <FeaturedMovie movie={this.state.featuredMovie} addMovieToFavs={this._addMovieToFavs} />
           </div>
           <div className="home-right">
             <WatchList movies={this.state.watchList} />

@@ -14,10 +14,6 @@ import store from '../store';
 const Header = (props) => {
   const history = useHistory();
 
-  const _reroute = () => {
-    console.log('REROUE');
-    window.location.href = '/search';
-  }
 
   const _redirectHome = () => {
     window.location.href = '/';
@@ -26,11 +22,8 @@ const Header = (props) => {
   const _setMovieTitle = (e) => {
     const title = e.target.value;
     if (e.key === 'Enter') {
-       //props.setMovieTitle(title);
-       console.log(title);
        localStorage.setItem('movieTitle', title);
-       
-       _reroute(); 
+       window.location.href = '/search';
     }
    
   }

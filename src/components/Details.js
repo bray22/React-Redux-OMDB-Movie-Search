@@ -23,7 +23,30 @@ class Details extends Component {
   componentDidMount = () => {
     const movieImdbId = localStorage.getItem('movieImdbId');
     this._fetchMovieByImdbId(movieImdbId);
+    
   };
+
+  componentDidUpdate = () => {
+    console.log(this.state);
+  }
+
+  _addMovieToFavs = (movie) => {
+    const movieFavoritesArray = store.getState().movieFavorites ? store.getState().movieFavorites: [];
+    movieFavoritesArray.push(movie);
+
+    let watchList = [];
+    if (localStorage.getItem('watchList') === null) {
+      localStorage.setItem('watchList', JSON.stringify([]));
+    } else {
+      watchList = JSON.parse(localStorage.getItem('watchList'));
+      watchList.push(movie);
+      localStorage.setItem('watchList', JSON.stringify(watchList));
+    }
+
+    this.setState({
+      watchList: JSON.parse(localStorage.getItem('watchList'))
+    });
+  }
 
   _fetchMovieByImdbId = async (movieImdbId) => {
     this.setState({
@@ -35,15 +58,11 @@ class Details extends Component {
     this.setState({
       movie: movieResponse,
       isLoading: false,
-      //title: store.getState().movieTitle,
-      //movieTitle: store.getState().movieTitle
     })
-
-    console.log(this.state.movie);
   };
 
   render = () => {
-   // const { isLoading, data, activeTab } = this.state;
+   
    return (
     <div className="mf-template">
       <div className="header">
@@ -51,7 +70,7 @@ class Details extends Component {
       </div>
       <div className="home-center">
         <div className="home-left">
-          <FeaturedMovie movie={this.state.movie} />
+          <FeaturedMovie movie={this.state.movie} addMovieToFavs={this._addMovieToFavs} />
         </div>
         <div className="home-right">
           <WatchList movies={this.state.watchList} />
@@ -60,25 +79,7 @@ class Details extends Component {
     </div>
   );
 };
-    // return (
-    //   <div className="mf-template">
-    //     <div className="header">
-    //       <Header />
-    //     </div>
-    //     <h2>Details</h2>
-    //     <h2>IMDB: { store.getState().movieImdbId }</h2>
-    //     <h2>{ this.state.movie.Title }</h2>
-    //     <h2>{ this.state.movie.Year }</h2>
-    //     <Link to={`/`}>Home</Link>
-    //   </div>
-    // );
-  
 
-  setData = data => {
-    this.setState({
-      data,
-    });
-  };
 }
 
 export default Details;

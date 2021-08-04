@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import store from '../store';
 import Header from './Header';
 import omdbServices from '../services/omdb';
-import { setMovieImdbId, addMovieToFavs } from "../actions/movieAction";
+import { addMovieToFavs } from "../actions/movieAction";
 import SearchResults from "../modules/SearchResults";
+import WatchList from "../modules/WatchList";
 
 class Search extends Component {
   constructor() {
@@ -21,20 +21,12 @@ class Search extends Component {
       movieList: [],
       movieFavorites: [],
       movies: [],
-      movieImdbId: 0
+      movieImdbId: 0,
+      watchList: JSON.parse(localStorage.getItem('watchList'))
     };
-
-    store.subscribe(() => {
-      // When state will be updated(in our case, when items will be fetched), 
-      // we will update local component state and force component to rerender 
-      // with new data.
-     console.log(store.getState());
-    
-     })
   }
 
   componentDidMount = () => {
-   console.log("Loaded");
    this.setState({
     movieFavorites: store.getState().movieFavorites,
     movieTitle: localStorage.getItem('movieTitle')
@@ -44,7 +36,6 @@ class Search extends Component {
   }
 
   _fetchFeatureMovie = async (title) => {
-    console.log("RE-GET");
     this.setState({
       isLoading: true,
     });
@@ -54,16 +45,11 @@ class Search extends Component {
     this.setState({
       movies: movieResponse,
       isLoading: false,
-      //title: store.getState().movieTitle,
-      //movieTitle: store.getState().movieTitle
     })
-
-    console.log(this.state.movies);
   };
 
   openDetails = (imdbId) => {
-    console.log(imdbId);
-    //this.props.setMovieImdbId(imdbId);
+  
     localStorage.setItem('movieImdbId', imdbId);
     this._reroute();
   }
@@ -82,32 +68,46 @@ class Search extends Component {
       localStorage.setItem('watchList', JSON.stringify(watchList));
     }
 
-    console.log(localStorage.getItem('watchList'));
-    console.log(watchList);
-
-    
-    //const movies = store.getState().movieFavorites;
-    //const myFavs = movies ? movies.push(movie): [movie];
-
+    this.setState({
+      watchList: JSON.parse(localStorage.getItem('watchList'))
+    });
   }
 
   _reroute = () => {
-    console.log('REROUE');
     this.props.history.push("/details");
   }
   
   render = () => {
+
+    console.log(this.state.movies.Search);
     return (
       <div className="mf-template">
         <div className="header">
           <Header />
         </div>
+        
 
-        <div className="search-panel">
-          <div className="search-results">
-            {this.state.movies.Search && <SearchResults addMovieToFavs={this._addMovieToFavs} movies={this.state.movies.Search} />}
+        <div className="search-center">
+          <div className="search-left">
+            <div className="search-panel">
+            <div className="search-results-header">
+              <h3>Search Results</h3>
+            </div>
+            <div className="search-results">
+              {this.state.movies.Search && <SearchResults addMovieToFavs={this._addMovieToFavs} movies={this.state.movies.Search} />}
+            </div>
+          </div>
+          </div>
+          <div className="search-right">
+            <WatchList movies={this.state.watchList} />
           </div>
         </div>
+
+
+        
+
+
+
       </div>
     );
   };

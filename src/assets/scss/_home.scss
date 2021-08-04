@@ -16,32 +16,66 @@ h1 {
   display: flex;
   flex-direction: column;
 
+  a {
+    color: white; 
+    text-decoration: none;
+    &:hover {
+      color: gray;
+    } 
+  }
+
   .search-panel {
     background: #1A1A1A;
-    height: 100%;
-    .search-results {
-      height: 85%;
-      border: 1px solid white;
+    flex:1;
+    .search-results-header {
       padding: 10px;
-      width: 70%;
+      width: 90%;
       margin: 20px auto 0 auto;
+      background-color: #333;
+    }
+    .search-results {
+      //height: 65%;
+      //@warn: 1px solid white;
+      span {
+        cursor: pointer;
+        color: #aaa;
+        &:hover {
+          color: gray;
+        }
+      }
+      padding: 10px;
+      width: 90%;
+      margin: 20px auto 0 auto;
+      background-color: #333;
+      display: flex;
+      flex-direction: column;
+     // overflow-x: scroll;
       
       
       .search-results-row {
         display: flex;
         cursor: pointer;
-        padding: 10px;
+        flex:1;
         border-bottom: 1px solid silver;
         div {
-          margin: 2px 0 20px 0;
-          padding: 0px 0 10px 10px;
+          margin: 0;
+          padding: 5px 0;
           
         }
         .movie-title {
-          width: 300px;
+          width: 50%;
+        }
+        .movie-type {
+          width: 15%;
+        }
+        .movie-year {
+          width: 15%;
+        }
+        .movie-imdb {
+          width: 15%;
         }
         .add-watchlist {
-          width: 200px;
+          width: 5%;
           &:hover {
             color: gray;
           }
@@ -53,26 +87,39 @@ h1 {
   .featured-movie-wrapper {
     display: flex;
     flex-direction: column;
+    h3 {
+      margin-right: 10px;
+      display: flex;
+      .plus {
+        margin-left: 10px;
+        cursor: pointer;
+        color: lightgreen;
+      }
+    }
     .top {
       height: 70%;
-      background: url(../img/spotlight.jpg) ;
+      //background: url(../img/spotlight.jpg);
+      background-image: linear-gradient(#333, #1a1a1a);
       display: flex;
       .left {
         flex: 0 100px;
-       
       }
       .right {
         flex: 1;
-        padding: 10px;
+        padding: 20px;
       }
     }
     .bottom {
       display: flex;
       margin-top: 10px;
       min-height: 150px;
+      h3 {
+        font-size: 18px;
+      }
       .left {
+       
         flex: 1;
-        background: #C9C9C9;
+        background: #ddcaa3;
         color: black;
         margin-right: 10px;
         padding: 10px;
@@ -81,7 +128,7 @@ h1 {
       .right {
         flex: 1;
         color: black;
-        background: #C9C9C9;
+        background: #ddcaa3;
         padding: 10px;
       }
       
@@ -100,11 +147,73 @@ h1 {
       padding: 30px;
     }
     .home-right {
-      background-color:#696969;
+      background-color:#1A1A1A;
       width: 40%;
       padding: 30px;
       .watchlist-wrapper {
+        padding: 10px;
+        background: #af841a;
+        .search-results-row {
+          display: flex;
+          cursor: pointer;
+          flex:1;
+          border-bottom: 1px solid silver;
+          div {
+            margin: 0;
+            padding: 10px 0;
+            
+          }
+          .movie-title {
+            width: 75%;
+          }
+         
+          .movie-year {
+            width: 25%;
+          }
+         
+        }
         width: 100%;
+        p {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .search-center {
+    background: green;
+    flex:2;
+    display: flex;
+    .search-left {
+      background: #1A1A1A;
+      width: 75%;
+      padding: 10px 30px 20px 0;
+    }
+    .search-right {
+      background-color:#1a1a1a;
+      width: 25%;
+      padding: 30px;
+      .watchlist-wrapper {
+        padding: 20px;
+        background: #af841a;
+        .search-results-row {
+          display: flex;
+          cursor: pointer;
+          flex:1;
+          border-bottom: 1px solid silver;
+          div {
+            margin: 0;
+            padding: 10px 0;
+            
+          }
+          .movie-title {
+            width: 85%;
+          }
+         
+          .movie-year {
+            width: 15%;
+          }
+         
+        }
         p {
           cursor: pointer;
         }
