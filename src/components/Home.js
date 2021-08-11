@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import store from '../store';
 import  Header  from './Header';
+import parseJson from 'parse-json';
 import omdbServices from '../services/omdb';
 import WatchList from '../modules/WatchList';
 import FeaturedMovie from '../modules/FeaturedMovie';
@@ -13,31 +14,33 @@ class Home extends Component {
     this.state = {
       isLoading: true,
       data: {},
-      movieTitle: 'The Godfather',
       featuredMovie: {},
-      watchList: JSON.parse(localStorage.getItem('watchList'))
+      watchList: []
     };
   }
 
   componentDidMount = () => {
+    this.setState({
+      watchList: parseJson(localStorage.getItem('watchList')),
+    });
     this._fetchFeatureMovie();
    }
 
-   _addMovieToFavs = (movie) => {
-    const movieFavoritesArray = store.getState().movieFavorites ? store.getState().movieFavorites: [];
-    movieFavoritesArray.push(movie);
+   _addMovieToWatchList = (movie) => {
+    const watchListArray = store.getState().movieWatchList ? store.getState().movieWatchList: [];
+    watchListArray.push(movie);
 
     let watchList = [];
     if (localStorage.getItem('watchList') === null) {
       localStorage.setItem('watchList', JSON.stringify([]));
     } else {
-      watchList = JSON.parse(localStorage.getItem('watchList'));
+      watchList = parseJson(localStorage.getItem('watchList'));
       watchList.push(movie);
       localStorage.setItem('watchList', JSON.stringify(watchList));
     }
 
     this.setState({
-      watchList: JSON.parse(localStorage.getItem('watchList'))
+      watchList: parseJson(localStorage.getItem('watchList'))
     });
   }
 
@@ -66,7 +69,7 @@ class Home extends Component {
         </div>
         <div className="home-center">
           <div className="home-left">
-            <FeaturedMovie movie={this.state.featuredMovie} addMovieToFavs={this._addMovieToFavs} />
+            <FeaturedMovie movie={this.state.featuredMovie} addMovieToWatchList={this._addMovieToWatchList} />
           </div>
           <div className="home-right">
             <WatchList movies={this.state.watchList} />

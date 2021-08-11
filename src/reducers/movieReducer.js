@@ -1,20 +1,27 @@
 const initialState = {
   movieTitle: false,
   movieImdbId: 0,
-  movieFavorites: []
+  movieWatchList: []
 }
+
+/* receive action and payload 
+and return new state with updates */
 
 const movieReducer = (state=initialState, action) => {
   switch (action.type) {
-    case "movie":
+    case "movieTitle":
       return {
         movieTitle: action.payload
     };
-    case "favorite":
+    case "watchListMovie":
       return {
-        movieFavorites: action.payload
+        movieWatchList: action.payload
     };
-    case "imdbId":
+    case "moviesSearch":
+      return {
+        movies: action.payload
+    };
+    case "movieImdbId":
       return {
         movieImdbId: action.payload
     };

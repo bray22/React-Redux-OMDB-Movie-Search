@@ -1,20 +1,10 @@
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-import omdbServices from '../services/omdb';
-import { setMovieTitle } from "../actions/movieAction";
 import { setMovies } from "../actions/movieAction";
 
-import { useHistory } from 'react-router-dom';
-
-
-import store from '../store';
-
-const Header = (props) => {
-  const history = useHistory();
-
-
+const Header = () => {
   const _redirectHome = () => {
     window.location.href = '/';
   }
@@ -25,10 +15,7 @@ const Header = (props) => {
        localStorage.setItem('movieTitle', title);
        window.location.href = '/search';
     }
-   
   }
-
-
     return (
       <div className="header-wrapper">
         <div onClick={() => _redirectHome()} className="logo">
