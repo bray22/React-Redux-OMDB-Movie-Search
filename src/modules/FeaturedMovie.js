@@ -7,10 +7,13 @@ const FeaturedMovie = (props) => {
     <div className="featured-movie-wrapper">
       <div className="top">
         <div className="left">
+          <div className="featured">Recommended</div>
           <img src={Poster} alt={Title} width="200" />
         </div>
         <div className="right">
-          <h3>{Title} {Year}<FontAwesomeIcon onClick={() => props.addMovieToFavs(props.movie)} className="plus" icon={faPlusCircle} /></h3>
+          <h3>
+            {Title} - {Year} 
+            <FontAwesomeIcon onClick={() => props.addMovieToWatchList(props.movie)} className="plus" icon={faPlusCircle} /></h3>
           <p>{Plot}</p>
           <hr />Starring: {Actors}
           <hr />Director: {Director}
@@ -19,17 +22,15 @@ const FeaturedMovie = (props) => {
       </div>
       <div className="bottom">
         <div className="left">
-        <h3>AWARDS</h3>
-        <p>{Awards}</p>
+          <h3>AWARDS</h3>
+          <p>{Awards}</p>
         </div>
         <div className="right">
-        <h3>RATINGS</h3>
-        {Ratings && Ratings.map( (rating) => {
-         return  <p>{rating.Source}: {rating.Value}</p>
-        })}
-
+          <h3>RATINGS</h3>
+            {Ratings && Ratings.map( (rating, i) => {
+              return <p key={i}>{rating.Source}: {rating.Value}</p>
+            })}
         </div>
-
       </div>
     </div>
   );

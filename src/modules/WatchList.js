@@ -8,13 +8,13 @@ const WatchList = (props) => {
   return (
     <div className="watchlist-wrapper">
       <h3>Watch List</h3>
-      { props.movies.map( (movie) => {
-        return <>
-        <div className="search-results-row" key={movie.imdbID}>
-          <div className="movie-title" onClick={() => openDetails(movie.imdbID)}>{movie.Title}</div>
-          <div className="movie-year" onClick={() => openDetails(movie.imdbID)}>{movie.Year}</div>
+      { props.movies.map( (movie, i) => {
+        return (
+        <div key={i} className="search-results-row">
+          <div key={`title${i}`} className="movie-title" onClick={() => openDetails(movie.imdbID)}>{movie.Title}</div>
+          <div key={`year${i}`} className="movie-year" onClick={() => openDetails(movie.imdbID)}>{movie.Year}</div>
         </div>
-      </>
+        )
       })}
 
     </div>

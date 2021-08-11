@@ -1,25 +1,21 @@
+/* 
+  fire actions for reducer and store to process
+*/
+
 export const setMovieTitle = data => {
-  return (
- { type: "movie",
-  payload: data
- }
-  )
+  return ({ type: "movieTitle", payload: data})
 };
 
 export const setMovies = data => {
-  return (
-    { type: "movie", payload: data }
-  )
+  return ({ type: "moviesSearch", payload: data })
 };
 
-export const addMovieToFavs = data => {
+export const addMovieToWatchList = data => {
   return (
-    { type: "favorite", payload: data }
-  )
+    { type: "watchListMovie", payload: data })
 };
 
 export const setMovieImdbId = data => {
   return (
-    { type: "imdbId", payload: data }
-  )
+    { type: "movieImdbId", payload: data })
 };

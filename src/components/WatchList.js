@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
 import Header from './Header';
+import parseJson from 'parse-json';
+import { searchConstants } from '../constants/search';
 import { removeWatchListItem } from '../utils/watchListUtils';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class WatchList extends Component {
+
   constructor() {
     super();
     this.state = {
@@ -15,7 +18,6 @@ class WatchList extends Component {
 
   _deleteFromWatchList = (title) => {
     this.setState({
-      // singleton util call
       data: removeWatchListItem(title)
     });
   }
@@ -26,9 +28,7 @@ class WatchList extends Component {
   }
 
   render = () => {
-    const watchList = JSON.parse(localStorage.getItem('watchList'));
-
-    console.log(watchList);
+    const watchList = parseJson(localStorage.getItem('watchList'));
 
     return (
       <div className="mf-template">
@@ -50,7 +50,7 @@ class WatchList extends Component {
                 <div key={i} className="movie-year" onClick={
                   () => this._openDetails(movie.imdbID)}>{movie.Year}</div>
                 <div key={i} className="movie-imdb">
-                  <a href={`https://www.imdb.com/title/${movie.imdbID}`} target="_new">
+                  <a href={`${searchConstants.IMDB_TITLE}/${movie.imdbID}`} target="_new">
                     IMDB page
                   </a>
                 </div>
