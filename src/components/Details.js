@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
-import Header from './Header';
-import store from '../store';
-import omdbServices from '../services/omdb';
-import FeaturedMovie from '../modules/FeaturedMovie';
-import WatchList from '../modules/WatchList';
 
-//import Vin from './Vin';
+import store from '../store';
+import Header from './Header';
+import parseJson from 'parse-json';
+import omdbServices from '../services/omdb';
+import WatchList from '../modules/WatchList';
+import FeaturedMovie from '../modules/FeaturedMovie';
 
 class Details extends Component {
   constructor() {
@@ -16,35 +15,36 @@ class Details extends Component {
       isLoading: true,
       data: {},
       movie: {},
-      watchList: JSON.parse(localStorage.getItem('watchList'))
+      watchList: []
     };
   }
 
   componentDidMount = () => {
     const movieImdbId = localStorage.getItem('movieImdbId');
-    this._fetchMovieByImdbId(movieImdbId);
+
+    this.setState({
+      watchList: parseJson(localStorage.getItem('watchList'))
+    });
     
+    this._fetchMovieByImdbId(movieImdbId);
   };
 
-  componentDidUpdate = () => {
-    console.log(this.state);
-  }
 
-  _addMovieToFavs = (movie) => {
-    const movieFavoritesArray = store.getState().movieFavorites ? store.getState().movieFavorites: [];
-    movieFavoritesArray.push(movie);
+  _addMovieToWatchList = (movie) => {
+    const watchListArray = store.getState().movieWatchList ? store.getState().movieWatchList: [];
+    watchListArray.push(movie);
 
     let watchList = [];
     if (localStorage.getItem('watchList') === null) {
       localStorage.setItem('watchList', JSON.stringify([]));
     } else {
-      watchList = JSON.parse(localStorage.getItem('watchList'));
+      watchList = parseJson(localStorage.getItem('watchList'));
       watchList.push(movie);
       localStorage.setItem('watchList', JSON.stringify(watchList));
     }
 
     this.setState({
-      watchList: JSON.parse(localStorage.getItem('watchList'))
+      watchList: parseJson(localStorage.getItem('watchList'))
     });
   }
 
@@ -70,7 +70,7 @@ class Details extends Component {
       </div>
       <div className="home-center">
         <div className="home-left">
-          <FeaturedMovie movie={this.state.movie} addMovieToFavs={this._addMovieToFavs} />
+          <FeaturedMovie movie={this.state.movie} addMovieToWatchList={this._addMovieToWatchList} />
         </div>
         <div className="home-right">
           <WatchList movies={this.state.watchList} />
